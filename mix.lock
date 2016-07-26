@@ -1,6 +1,7 @@
 %{"hamcrest": {:hex, :hamcrest, "0.1.2", "2f06fad05983ce98a7832c4a7a508aab935b68865fdf607d30a030c129ec1365", [:rebar, :make], []},
   "linguist": {:hex, :linguist, "0.1.5", "98739fc47ac5d951322a57c787f46786c95b53d800105d43a0631633e7f9da9b", [:mix], []},
   "meck": {:hex, :meck, "0.8.4", "59ca1cd971372aa223138efcf9b29475bde299e1953046a0c727184790ab1520", [:rebar, :make], []},
+  "momento": {:hex, :momento, "0.1.2", "62308dc6ab05bac8ca370556e62efc2dcb1eadbbc8b82d32fa70028c08ad88b6", [:mix], []},
   "poison": {:hex, :poison, "2.2.0", "4763b69a8a77bd77d26f477d196428b741261a761257ff1cf92753a0d4d24a63", [:mix], []},
   "pooler": {:hex, :pooler, "1.5.0", "0fd4be5d2976e6a2e9a1617623031758c26f200c1fca89e4a3c542747bec6371", [:rebar, :make], []},
   "protobuffs": {:hex, :protobuffs, "0.8.4", "d38ca5f7380d8477c274680273372011890f8d0037c0d7e7db5c0207b89a4e0b", [:rebar, :make], [{:meck, "~> 0.8.4", [hex: :meck, optional: false]}]},
