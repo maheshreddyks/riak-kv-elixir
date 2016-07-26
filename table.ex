@@ -33,9 +33,9 @@ defmodule Connect do
 	end
 
 	# query
-	#def query(table,spec,value1) do
-	#	Riak.Timeseries.query get_pid(), to_string(select * from table where time > get_time(spec, value1) and device = 'device 1' and string = 'string 4')
-	#end
+	def query(table,spec,value1) do
+		Riak.Timeseries.query(get_pid(),"select * from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = 'device100' and string = 'string 1'")
+	end
 
 	def getpt() do
 		String.to_integer(date! |> format("x"))

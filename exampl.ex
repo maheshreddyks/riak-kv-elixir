@@ -58,6 +58,16 @@ Riak.Timeseries.put pid,"SampleVTable", [{"device 1", "string 4",Timestamp.getmi
 
 163.172.170.141
 
-Connect.start "163.172.170.141","8087" 
+Connect.start "163.172.170.141","8087"
 
 Connect.newobj("device 101","string 101", "789")
+
+Connect.newobj('SampleVTable','device 101','string 101', '789')
+
+# insert
+	def newobj() do
+		#dev = to_string(device)
+		#str = to_string(string)
+		#tab = to_string(table)
+		Riak.Timeseries.put(get_pid(),"SampleVTable",[{"device100", "string" <>" " <> to_string(Enum.take_random(1..12,1) |> List.first), getpt(), Enum.take_random(600..1000,1) |> List.first}])
+	end
