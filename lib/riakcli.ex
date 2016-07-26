@@ -1,0 +1,2 @@
+defmodule Riakcli do
+end
