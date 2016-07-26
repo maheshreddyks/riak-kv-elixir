@@ -59,3 +59,5 @@ Riak.Timeseries.put pid,"SampleVTable", [{"device 1", "string 4",Timestamp.getmi
 163.172.170.141
 
 Connect.start "163.172.170.141","8087" 
+
+Connect.newobj("device 101","string 101", "789")

@@ -17,15 +17,28 @@ defmodule Connect do
 		p_value
 	end
 
+	# insert data in double quotes except value
+	def newobj(table,device,string,value) do
+		Riak.Timeseries.put(get_pid(),table,[{device, string, getpt(), value}])
+	end
+
 	# insert
-	def newobj(table_name,device,string,value) do
-		Riak.Timeseries.put get_pid(),table_name,
-		[{device, string,String.to_integer(date! |> format("x")),value}]
+	def newrand() do
+		Process.sleep(1000)
+		#dev = to_string(device)
+		#str = to_string(string)
+		#tab = to_string(table)
+		Riak.Timeseries.put(get_pid(),"SampleVTable",[{"device100", "string" <>" " <> to_string(Enum.take_random(1..12,1) |> List.first), getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0}])
+		newrand()
 	end
 
 	# query
-	def query(table,spec,value1) do
-		Riak.Timeseries.query get_pid(), to_string(select * from table where time > get_time(spec, value1) and device = 'device 1' and string = 'string 4')
+	#def query(table,spec,value1) do
+	#	Riak.Timeseries.query get_pid(), to_string(select * from table where time > get_time(spec, value1) and device = 'device 1' and string = 'string 4')
+	#end
+
+	def getpt() do
+		String.to_integer(date! |> format("x"))
 	end
 
 	# get time in UNIX ts
