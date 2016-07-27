@@ -33,6 +33,7 @@ defmodule Connect do
 	end
 
 	def autogen() do
+		Process.sleep(1000)
 		Riak.Timeseries.put(get_pid(),"SampleTable",[
 			{"device 1", "string 1" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
 			{"device 1", "string 2" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
