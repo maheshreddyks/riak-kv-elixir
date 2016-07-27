@@ -3,6 +3,7 @@ defmodule Connect do
 	import Momento
 
 	# mention id and port in "10....1","8087"
+	# Connect.start "163.172.170.141","8087"
 	def start(id , port) do
 		pidtable = :ets.new(:spid_name, [:named_table])
 		ipid = String.to_charlist(id)
@@ -22,7 +23,7 @@ defmodule Connect do
 		Riak.Timeseries.put(get_pid(),table,[{device, string, getpt(), value}])
 	end
 
-	# insert
+	# insert tandom values 1 per sec change table
 	def newrand() do
 		Process.sleep(1000)
 		#dev = to_string(device)
@@ -32,6 +33,8 @@ defmodule Connect do
 		newrand()
 	end
 
+
+	# autogenration for 150values per sec
 	def autogen() do
 		Process.sleep(1000)
 		Riak.Timeseries.put(get_pid(),"SampleTable",[
@@ -192,21 +195,24 @@ defmodule Connect do
 	def query(table,spec,value1) do
 		Riak.Timeseries.query(get_pid(),"select * from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = 'device 100' and string = 'string 1'")
 	end
-
+	# Counts the avg query
 	def avgquery(table,spec,value1) do
 		IO.inspect "hello #{get_time(spec, value1)} and time < #{getpt()}"
 		Riak.Timeseries.query(get_pid(),"select avg(voltages) from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = 'device 100' and string = 'string 1'")
 	end
 
+	# Counts the objects in query
 	def countquery(table,spec,value1) do
 		IO.inspect "hello #{get_time(spec, value1)} and time < #{getpt()}"
 		Riak.Timeseries.query(get_pid(),"select count(voltages) from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = 'device 100' and string = 'string 1'")
 	end
 	
+	# get list of a table
 	def getlist() do
 		Riak.Timeseries.list!(get_pid(),"SampleTable")
 	end
 
+	# get present time in UNIX timestamp
 	def getpt() do
 		String.to_integer(date! |> format("x"))
 	end
@@ -220,11 +226,6 @@ defmodule Connect do
 		end
 	end
 
-	# get pid
-	def get_pid do
-		{_,p_value}= :ets.lookup(:spid_name,"pid") |> hd 
-		p_value
-	end
 end
 
 
