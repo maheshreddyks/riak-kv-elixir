@@ -48,7 +48,17 @@ Riak.Timeseries.put("SampleVTable", [
     {"region2", "state99", 26, "windy", 19.0}
 ])
 
-
+Riak.Timeseries.put(get_pid(),"SampleTable",[
+	{"device100", "string 1" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 2" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 3" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 4" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 5" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 6" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 7" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 8" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 9" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
+	{"device100", "string 10" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0}])
 
 
 riak-admin bucket-type create SampleVTable '{"props":{"table_def": "CREATE TABLE SampleVTable (device VARCHAR NOT NULL, string VARCHAR NOT NULL, time TIMESTAMP NOT NULL, voltages DOUBLE, PRIMARY KEY ((device, string, QUANTUM(time, 15, 'm')), device, string, voltages))"}}'
