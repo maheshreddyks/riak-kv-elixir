@@ -188,12 +188,15 @@ defmodule Connect do
 			{"device 15", "string 8" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
 			{"device 15", "string 9" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0},
 			{"device 15", "string 10" , getpt(), (Enum.take_random(600..1000,1) |> List.first)/1.0}])
+		autogen()
 
 	end
 
 	# query
-	def query(table,spec,value1) do
-		Riak.Timeseries.query(get_pid(),"select * from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = 'device 100' and string = 'string 1'")
+	def query(table,spec,value1,colom1,colom2) do
+		col1 = String.to_charlist(colom1)
+		col2 = String.to_charlist(colom2)
+		Riak.Timeseries.query(get_pid(),"select * from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = #{col1} and string = #{col2} ")
 	end
 	# Counts the avg query
 	def avgquery(table,spec,value1) do
@@ -202,9 +205,11 @@ defmodule Connect do
 	end
 
 	# Counts the objects in query
-	def countquery(table,spec,value1) do
+	def countquery(table,spec,value1,colom1,colom2) do
+		col1 = String.to_charlist(colom1)
+		col2 = String.to_charlist(colom2)
 		IO.inspect "hello #{get_time(spec, value1)} and time < #{getpt()}"
-		Riak.Timeseries.query(get_pid(),"select count(voltages) from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = 'device 100' and string = 'string 1'")
+		Riak.Timeseries.query(get_pid(),"select count(voltages) from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = #{col1} and string = #{col2} ")
 	end
 	
 	# get list of a table
@@ -227,5 +232,3 @@ defmodule Connect do
 	end
 
 end
-
-

@@ -81,3 +81,11 @@ Connect.newobj('SampleVTable','device 101','string 101', '789')
 		#tab = to_string(table)
 		Riak.Timeseries.put(get_pid(),"SampleVTable",[{"device100", "string" <>" " <> to_string(Enum.take_random(1..12,1) |> List.first), getpt(), Enum.take_random(600..1000,1) |> List.first}])
 	end
+
+	import Momento
+	
+	h =String.to_integer date! |> format "x"
+
+	String.to_integer(date! |> subtract(2, :hours) |> format("x")) 
+	
+	Riak.Timeseries.query(pid,"select count(voltages) from SampleTable where time > 1469558053787 and time < 1469644860600 and device = 'device 1' and string = 'string 1'")
