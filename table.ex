@@ -199,7 +199,7 @@ defmodule Connect do
 		Riak.Timeseries.query(get_pid(),"select * from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = '#{col1}' and string = '#{col2}' ")
 	end
 	# Counts the avg query
-	def avgquery(table,spec,value1) do
+	def avgquery(table,spec,value1,colom1,colom2) do
 		col1 = String.to_charlist(colom1)
 		col2 = String.to_charlist(colom2)
 		# IO.inspect "hello #{get_time(spec, value1)} and time < #{getpt()}"
