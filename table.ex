@@ -209,7 +209,11 @@ defmodule Connect do
 		col1 = String.to_charlist(colom1)
 		col2 = String.to_charlist(colom2)
 		IO.inspect "hello #{get_time(spec, value1)} and time < #{getpt()}"
-		Riak.Timeseries.query(get_pid(),"select count(voltages) from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = #{col1} and string = #{col2} ")
+		Riak.Timeseries.query(get_pid(),"select count(voltages) from #{table} where time > #{get_time(spec, value1)} and time < #{getpt()} and device = '#{col1}' and string = '#{col2}' ")
+	end
+
+	def strchar() do
+		
 	end
 	
 	# get list of a table
