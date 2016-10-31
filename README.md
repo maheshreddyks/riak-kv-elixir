@@ -26,3 +26,4 @@ If [published on HexDocs](https://hex.pm/docs/tasks#hex_docs), the docs can
 be found at [https://hexdocs.pm/riakcli](https://hexdocs.pm/riakcli)
 
 # riak-ts-elixir
+# riak-ts-elixir
