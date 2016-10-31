@@ -14,7 +14,7 @@ defmodule Riakcli.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :riak, :poison, :momento]]
+    [applications: [:logger, :riak, :poison, :momento,:calendar]]
   end
 
   # Dependencies can be Hex packages:
@@ -29,6 +29,7 @@ defmodule Riakcli.Mixfile do
   defp deps do
     [{:poison, "~> 2.0"},
     {:riak, "~> 1.1"},
-    {:momento, "~> 0.1.1"}]
+    {:momento, "~> 0.1.1"},
+    {:calendar,"~> 0.16.1"}]
   end
 end
